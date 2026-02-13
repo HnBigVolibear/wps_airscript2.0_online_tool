@@ -1,7 +1,8 @@
 /**
  * WPS 智能表格 AirScript2.0 API通用工具函数库
- * @Repository：https://github.com/HnBigVolibear/wps_airscript2.0_online_tool
- * @Version：V20260207豪华版
+ * @Repository1：https://github.com/HnBigVolibear/dify_plugin_wps_airscript2.0_online_tool
+ * @Repository2：https://github.com/HnBigVolibear/wps_airscript2.0_online_tool
+ * @Version：V20260213豪华版
  * @Author：湖南大白熊RPA工作室
  * @Contact：https://github.com/HnBigVolibear/
  * @Liscense：MIT
@@ -302,7 +303,7 @@ function executeFunction(functionName, params, sheetName) {
       case "getUsedRangeData":
         result.push({
           success: true,
-          data: getUsedRangeData(sheetName),
+          data: getUsedRangeData(params.isGetData, sheetName),
         });
         break;
 
@@ -1371,13 +1372,23 @@ function insertLink(address, text, url, sheetName) {
 
 /**
  * 获取已使用区域的数据
+ * @param {string} isGetData - 是否返回数据。否则只返回当前已使用区域的位置（起始单元格~结束单元格）
  * @param {string} sheetName - 工作表名称，不传则使用当前活动工作表
  * @returns {Array} 二维数组数据
  */
-function getUsedRangeData(sheetName) {
+function getUsedRangeData(isGetData, sheetName) {
   const ws = getWorksheetByName(sheetName);
   const usedRange = ws.UsedRange;
-  return usedRange.Value2;
+  if (isGetData=='是') {
+    return usedRange.Value2;
+  } else {
+    return [
+      usedRange.Row, // 起始行
+      usedRange.Column, // 起始列
+      usedRange.Row+usedRange.Rows.Count-1, // 最后一行
+      usedRange.Column+usedRange.Columns.Count-1 // 最后一列
+    ]
+  }
 }
 
 
@@ -1745,6 +1756,9 @@ function run_test_online() {
   // deleteAllPivotTables("透视表测试_测试02")
 
   // addWorksheet("工作表4")
+  
+  console.log( getUsedRangeData( "否", sheetName ) )
+  // console.log( getUsedRangeData( "是", sheetName ) )
   
 }
 

@@ -7,10 +7,10 @@ from wps_airscript_client import WPSAirScriptClient
 
 # ==================== 配置信息 ====================
 # 务必先阅读Readme.md文件，学习如何获取自己的WPS在线智能表的以下这3个参数！
-FILE_ID = "cbK******2K"  # 替换为你的智能表格ID
-TOKEN = "2Ze***************dry"  # 替换为你的 Token令牌
-SCRIPT_ID = "V2-2vM******************D0iR"  # 替换为你的脚本ID
-SHEET_NAME = "工作表4"  # 默认工作表名称
+FILE_ID = "*********"  # 替换为你的智能表格ID
+TOKEN = "*************************"  # 替换为你的 Token令牌
+SCRIPT_ID = "V2-******************"  # 替换为你的脚本ID
+SHEET_NAME = "工作表1"  # 默认工作表名称
 
 # ==================== 初始化客户端 ====================
 
@@ -334,15 +334,23 @@ def test_paste_to_range():
 
 # ==================== 数据读取测试 ====================
 
-def test_get_used_range_data():
+def test_get_used_range_data(isGetData):
     """测试获取已使用区域数据"""
     client = get_client()
-    result = client.get_used_range_data(SHEET_NAME)
+    result = client.get_used_range_data(isGetData, SHEET_NAME)
     if result:
-        print(f"已使用区域数据: {len(result)} 行 x {len(result[0]) if result else 0} 列")
-        print("前3行数据:")
-        for i, row in enumerate(result[:3]):
-            print(f"  行{i+1}: {row}")
+        if isGetData=='是':
+            print(f"已使用区域数据: {len(result)} 行 x {len(result[0]) if result else 0} 列")
+            print("前3行数据:")
+            for i, row in enumerate(result[:3]):
+                print(f"  行{i+1}: {row}")
+        else:
+            print(
+                f'已使用区域-起始行：{result[0]}',
+                f'已使用区域-起始列：{result[1]}',
+                f'已使用区域-结束行：{result[2]}',
+                f'已使用区域-结束列：{result[3]}',
+            )
     else:
         print("未获取到数据")
     return result
@@ -498,7 +506,8 @@ def main():
     # res = client.insert_image("A1", image_data, SHEET_NAME)
     # print(res)
     # # 数据读取测试
-    # test_get_used_range_data() # test success
+    test_get_used_range_data("是") # test success
+    test_get_used_range_data("否") # test success
     # time.sleep(1)
     #
     # # 工作表管理测试

@@ -794,11 +794,12 @@ class WPSAirScriptClient:
         
         return []
     
-    def get_used_range_data(self, sheet_name: str = None) -> List[List]: # type: ignore
+    def get_used_range_data(self, isGetData: str, sheet_name: str = None) -> List[List]: # type: ignore
         """
         获取已使用区域的数据
         
         Args:
+            isGetData: 是否获取数据。是——返回数据；否——返回范围位置！
             sheet_name: 工作表名称，可选
             
         Returns:
@@ -808,7 +809,7 @@ class WPSAirScriptClient:
             >>> data = client.get_used_range_data("Sheet1")
             >>> print(data)  # [['Name', 'Age'], ['Alice', 25]]
         """
-        result = self._call_function("getUsedRangeData", sheet_name=sheet_name)
+        result = self._call_function("getUsedRangeData", sheet_name=sheet_name, isGetData=isGetData)
         result = self._extract_result(result)
         
         # 返回实际的数据数组
