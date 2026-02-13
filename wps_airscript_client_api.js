@@ -5,7 +5,7 @@
  * @Version：V20260213豪华版
  * @Author：湖南大白熊RPA工作室
  * @Contact：https://github.com/HnBigVolibear/
- * @Liscense：MIT
+ * @License：MIT
  * 基于WPS AirScript2.0，官方文档：https://airsheet.wps.cn/docs/apiV2/overview.html
  * 现在已切换至 2.0 版本，不过要注意可能有部分函数不兼容AirScript1.0。。。
  * 部分方法（尤其是单元格插入图片），如果你用起来发现出现离奇报错，那么请切换至1.0版本！

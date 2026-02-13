@@ -1,11 +1,11 @@
 """
 WPS 智能表格 AirScript API2.0 Python客户端
- * WPS 智能表格 AirScript2.0 API通用工具函数库
- * @Repository：https://github.com/HnBigVolibear/wps_airscript2.0_online_tool
- * @Version：V20260207 豪华版
+ * @Repository1：https://github.com/HnBigVolibear/dify_plugin_wps_airscript2.0_online_tool
+ * @Repository2：https://github.com/HnBigVolibear/wps_airscript2.0_online_tool
+ * @Version：V20260213豪华版
  * @Author：湖南大白熊RPA工作室
  * @Contact：https://github.com/HnBigVolibear/
- * @Liscense：MIT
+ * @License：MIT
  * 基于WPS AirScript2.0，官方文档：https://airsheet.wps.cn/docs/apiV2/overview.html
  * 现在已切换至 2.0 版本，不过要注意可能有部分函数不兼容AirScript1.0。。。
  * 部分方法（尤其是单元格插入图片），如果你用起来发现出现离奇报错，那么请切换至1.0版本！
