@@ -116,6 +116,11 @@ client = get_client()
 result = client.set_cell_value("E1", "备注", SHEET_NAME)
 print("设置单元格值:", result)
 
+"""测试设置单元格值并指定格式"""
+client = get_client()
+result = client.set_cell_value("D2", 12345.678, SHEET_NAME, format="#,##0.00")
+print("设置单元格值(带格式):", result)
+
 """测试获取区域值"""
 client = get_client()
 result = client.get_range_values("A1:D3", SHEET_NAME)

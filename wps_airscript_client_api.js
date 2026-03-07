@@ -119,7 +119,7 @@ function executeFunction(functionName, params, sheetName) {
         break;
 
       case "setCellValue":
-        setCellValue(params.address, params.value, sheetName);
+        setCellValue(params.address, params.value, sheetName, params.format);
         result.push({ success: true, message: "设置成功" });
         break;
 
@@ -647,10 +647,14 @@ function getCellValue(address, sheetName) {
  * @param {string} address - 单元格地址，如 "A1"
  * @param {*} value - 要设置的值
  * @param {string} sheetName - 工作表名称，不传则使用当前活动工作表
+ * @param {string} format - 可选，数字格式字符串，如 "#,##0.00"
  */
-function setCellValue(address, value, sheetName) {
+function setCellValue(address, value, sheetName, format) {
   const range = getRange(address, sheetName);
   range.Value2 = value;
+  if (format) {
+    range.NumberFormat = format;
+  }
 }
 
 /**

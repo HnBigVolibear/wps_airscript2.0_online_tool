@@ -54,6 +54,14 @@ def test_set_cell_value():
     return result
 
 
+def test_set_cell_value_with_format():
+    """测试设置单元格值并指定格式"""
+    client = get_client()
+    result = client.set_cell_value("D2", 12345.678, SHEET_NAME, format="#,##0.00")
+    print("设置单元格值(带格式):", result)
+    return result
+
+
 def test_get_range_values():
     """测试获取区域值"""
     client = get_client()
