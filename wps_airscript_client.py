@@ -146,7 +146,7 @@ class WPSAirScriptClient:
         """
         return self._call_function("getCellValue", sheet_name=sheet_name, address=address)
     
-    def set_cell_value(self, address: str, value: Any, sheet_name: str = None) -> Dict: # type: ignore
+    def set_cell_value(self, address: str, value: Any, sheet_name: str = None, format: str = None) -> Dict: # type: ignore
         """
         设置单元格值
         
@@ -154,6 +154,7 @@ class WPSAirScriptClient:
             address: 单元格地址，如 "A1"
             value: 要设置的值（字符串、数字、布尔值等）
             sheet_name: 工作表名称，可选。不指定则使用当前活动工作表
+            format: 可选，数字格式字符串，如 "#,##0.00"、"yyyy-mm-dd"
             
         Returns:
             执行结果字典
@@ -162,7 +163,7 @@ class WPSAirScriptClient:
             >>> client.set_cell_value("A1", "Hello")
             >>> client.set_cell_value("B2", 123, "Sheet1")
         """
-        return self._call_function("setCellValue", sheet_name=sheet_name, address=address, value=value)
+        return self._call_function("setCellValue", sheet_name=sheet_name, address=address, value=value, format=format)
     
     def get_range_values(self, address: str, sheet_name: str = None) -> List[Dict]: # type: ignore
         """
